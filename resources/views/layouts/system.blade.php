@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -27,13 +28,17 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+        <!-- Sidebar o Barra Lateral-->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <!-- <i class="fas fa-laugh-wink"></i> -->
+
+                    <!-- <img class="img-profile rounded-circle"
+                                    src="imagenes/mensaje.jpg"> -->
+                    <img style="width:45px;"class="img-profile rounded-circle" src="imagenes/mensaje.jpg">
                 </div>
                 <div class="sidebar-brand-text mx-3">Paqueteria</div>
             </a>
@@ -42,40 +47,34 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Registros de Paquetes</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+
+                        <a class="collapse-item" href="buttons.html">Salida</a>
+                        <a class="collapse-item" href="cards.html">Llegada</a>
+                        <a class="collapse-item" href="cards.html">Lista de paquetes</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
 
 
             <!-- Divider -->
@@ -89,8 +88,8 @@
         </ul>
         <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Contenedor  Wrapper -->
+        <div align="center" id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
@@ -129,15 +128,24 @@
                             <!-- Dropdown - Messages -->
 
                         </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    {{ Auth::user()->name }}</span>
+                                <img style="width:75px;" src="imagenes/u.png">
                             </a>
                             <!-- Dropdown - User Information -->
 
@@ -150,43 +158,26 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                @yield('content')
-                    <!-- Page Heading -->
-
-
-                    <!-- Content Row -->
-
-
-                    <!-- Content Row -->
-
-
-
-                    <!-- Content Row -->
-
-
+                    @yield('content')
+                    <div class="soon">
+                        <div class="loader">
+                            <h1>Bienvenido {{ Auth::user()->name }} </h1>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
+
 
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    </a>
-
-    <!-- Logout Modal-->
-
-
-    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -196,3 +187,4 @@
 </body>
 
 </html>
+
